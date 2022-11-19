@@ -119,8 +119,6 @@ public class CartActivity extends AppCompatActivity {
                         }
 
 
-
-
                     }
                     //  Toasty.success(getContext(), "All data fetched", Toasty.LENGTH_SHORT).show();
 
