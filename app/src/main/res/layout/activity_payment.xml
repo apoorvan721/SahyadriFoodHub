@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Payment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/lyt_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+
+            <TextView
+                android:id="@+id/tvOrderId"
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Payment"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/input_bg"
+        android:hint="Name" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="@drawable/input_bg"
+        android:hint="UPI ID"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/upi_id" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:hint="Amount"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/amount_et"
+        android:background="@drawable/input_bg"
+        android:inputType="numberDecimal" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:hint="Note"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/note"
+        android:background="@drawable/input_bg" />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_gredent_10dp"
+        android:text="Pay Now" />
+</LinearLayout>
