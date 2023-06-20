@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements PaymentResultListener {
 
     private RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
@@ -81,8 +82,12 @@ public class CartActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
             }
         });
+
+        Checkout.preload(getApplicationContext());
 
         back=findViewById(R.id.img_aerrow_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +173,29 @@ public class CartActivity extends AppCompatActivity {
         }
     };
 
+    private void intializepayment(){
+//        Intent intent = new Intent(CartActivity.this,Reciept.class);
+//        startActivity(intent);
+
+    }
+    @Override
+    public void onPaymentSuccess(String razorpayPaymentID) {
+        // Payment successful, handle success logic here
+        Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
+
+        // Open another activity and pass the price value
+        Intent intent = new Intent(CartActivity.this, Reciept.class);
+        intent.putExtra("price", TotalAmount);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onPaymentError(int code, String description) {
+        // Payment failed, handle failure logic here
+        Toast.makeText(this, "Payment Failed: " + description, Toast.LENGTH_SHORT).show();
+    }
+
+
     private void checkCartDetails() {
         listCartDetails = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
@@ -197,6 +225,7 @@ public class CartActivity extends AppCompatActivity {
 
 
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

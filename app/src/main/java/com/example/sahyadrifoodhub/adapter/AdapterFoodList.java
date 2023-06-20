@@ -116,7 +116,10 @@ public class AdapterFoodList extends RecyclerView.Adapter<AdapterFoodList.Adapte
             holder.btn_Add_to_cart.setVisibility(View.GONE);
             holder.lytCount.setVisibility(View.VISIBLE);
             Map<String, String> map = new HashMap<>();
+            String uid = FirebaseAuth.getInstance().getUid();
+            map.put("Uid", uid);
             map.put("FoodId", model.getFoodId());
+            map.put("FoodName", model.getFoodName());
             map.put("FoodCount","1");
 
             FirebaseDatabase.getInstance().getReference().child("CartDetails").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child(model.getFoodId()).setValue(map);
@@ -140,6 +143,7 @@ public class AdapterFoodList extends RecyclerView.Adapter<AdapterFoodList.Adapte
                             holder.tvCount.setText(Integer.toString(count));
                             Map<String, Object> map = new HashMap<>();
                             map.put("FoodId", model.getFoodId());
+                            map.put("FoodName", model.getFoodName());
                             map.put("FoodCount", Integer.toString(count));
 
                             FirebaseDatabase.getInstance().getReference().child("CartDetails").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child(model.getFoodId()).updateChildren(map);
@@ -180,6 +184,7 @@ public class AdapterFoodList extends RecyclerView.Adapter<AdapterFoodList.Adapte
                                 holder.tvCount.setText(Integer.toString(count));
                                 Map<String, Object> map = new HashMap<>();
                                 map.put("FoodId", model.getFoodId());
+                                map.put("FoodName", model.getFoodName());
                                 map.put("FoodCount", Integer.toString(count));
 
                                 FirebaseDatabase.getInstance().getReference().child("CartDetails").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child(model.getFoodId()).updateChildren(map);
