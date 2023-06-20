@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.razorpay.Checkout;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +45,7 @@ public class CartActivity extends AppCompatActivity {
     ImageView back;
     TextView checkout;
     TextView Amount;
+    String TotalAmount;
 
 
     @Override
@@ -59,9 +63,24 @@ public class CartActivity extends AppCompatActivity {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(CartActivity.this,Payment.class);
-                startActivity(intent);
-                finish();
+                double price = Double.parseDouble(TotalAmount);
+
+                Checkout checkout = new Checkout();
+                checkout.setKeyID("rzp_test_4MOhFGXnzl2zFR"); // Replace with your Razorpay Key ID
+
+                try {
+                    JSONObject options = new JSONObject();
+                    options.put("name", "Your App Name");
+                    options.put("description", "Payment for your product");
+                    options.put("currency", "INR");
+                    options.put("amount", (int) (price * 100)); // amount in paise (e.g., Rs. 10)
+                    options.put("prefill.email", "customer@example.com");
+                    options.put("prefill.contact", "9876543210");
+
+                    checkout.open(CartActivity.this, options);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -143,7 +162,7 @@ public class CartActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             // Get extra data included in the Intent
-            String TotalAmount = intent.getStringExtra("TotalAmount");
+            TotalAmount = intent.getStringExtra("TotalAmount");
             Amount=findViewById(R.id.tvTotalAmount);
             Amount.setText(TotalAmount);
         }

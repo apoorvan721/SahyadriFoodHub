@@ -33,6 +33,12 @@
                 android:text="Category"
                 android:textColor="@color/white" />
 
+            <ImageView
+                android:id="@+id/cartimg"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginStart="300dp"
+                android:src="@drawable/shopcart" />
 
 
         </RelativeLayout>

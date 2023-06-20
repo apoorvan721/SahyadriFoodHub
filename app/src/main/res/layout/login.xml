@@ -11,7 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-205dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/lyt_appbar"
@@ -33,7 +35,6 @@
                     android:layout_centerVertical="true"
                     android:text="Login"
                     android:textColor="@color/white" />
-
 
 
             </RelativeLayout>

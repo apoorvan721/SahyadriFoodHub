@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Payment"
     android:orientation="vertical">
 
@@ -33,52 +33,67 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/input_bg"
-        android:hint="Name" />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Enter your amount"
+       android:textSize="25dp"
+       android:textColor="@color/black"
+       android:gravity="center"
+       android:layout_marginTop="60dp"/>
+
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:background="@drawable/input_bg"
-        android:hint="UPI ID"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/upi_id" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:hint="Amount"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/amount_et"
-        android:background="@drawable/input_bg"
-        android:inputType="numberDecimal" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:hint="Note"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/note"
-        android:background="@drawable/input_bg" />
-
-    <Button
-        android:id="@+id/send"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/note_amount"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_gredent_10dp"
-        android:text="Pay Now" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:hint="Amount" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="200sp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:background="@drawable/googlepay_button_background"
+        android:clickable="true"
+        android:contentDescription="@string/googlepay_button_content_description"
+        android:focusable="true"
+        android:padding="4sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:duplicateParentState="true"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+
+            <ImageView
+                android:id="@+id/googlePayButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:duplicateParentState="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/googlepay_button_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:duplicateParentState="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/googlepay_button_overlay" />
+    </RelativeLayout>
+
+
 </LinearLayout>
